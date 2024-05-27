@@ -1,0 +1,4 @@
+node_modules
+.env
+./app/sample-01
+./app/public
