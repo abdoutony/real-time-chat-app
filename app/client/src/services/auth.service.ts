@@ -1,17 +1,24 @@
 import axios from "axios";
 import axiosInstance from "../lib/axios";
-export const handleLogin = ({ email, password }:{email:string,password:string}) => {
+import { SetStateAction } from "react";
+export const handleLogin = ({ email, password }:{email:string,password:string},setLoading: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; }
+) => {
+    setLoading(true)
   axiosInstance
     .post("/auth/login", { email, password })
     .then((res) => {
         console.log(res)
       if (res.status === 200) {
+        setLoading(false)
           window.location = "/chat" as unknown as Location;
       }
     })
     .catch((err) => {
       console.log(err);
-      alert(err.response.data.msg);
+      setLoading(false)
+      setTimeout(()=>{
+        alert(err.response.data.msg);
+      },1000)
     });
 };
 export const handleLogout = async () => {

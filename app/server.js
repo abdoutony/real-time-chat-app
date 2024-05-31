@@ -63,6 +63,8 @@ console.log( "Server listening on port:" + port );
 let upvote_count=0
 let interval;
 io.on("connection", function( socket ) {
+ const userId = socket.request.userId;
+   console.log(userId)
     console.log("a user has connected!");
     if (interval) {
         clearInterval(interval);
@@ -73,6 +75,9 @@ io.on("connection", function( socket ) {
         clearInterval(interval);
     });
      
+    socket.on("message",function(message){
+      console.log(`, said: ${message}`)
+    })
     // socket.on( "upvote-event", function( upvote_flag ) {
     // console.log( "upvote: " + upvote_flag );
     // upvote_count += upvote_flag ? 1: -1;

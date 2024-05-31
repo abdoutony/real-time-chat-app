@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axiosInstance from "../axios";
 
 
-const useFetch = (url = "", searchText = "") => {
-  const [data, setData] = useState(null);
+const useFetch = <T>(url = "", searchText = "") => {
+  const [data, setData] = useState();
   const [error, setError] = useState<Error>()
   const [loading, setLoading] = useState(false);
 
