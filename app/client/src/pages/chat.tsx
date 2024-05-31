@@ -1,6 +1,9 @@
 import React from 'react'
-
+import useFetch from '../lib/hooks/useFetch'
+import { handleLogout } from '../services/auth.service'
 export default function Chat() {
+  const {data,loading,error} = useFetch("/message")
+  console.log(data)
   return (
    <div className="bg-gray-100 h-screen flex items-center justify-center">
   {/* Chat Container */}
@@ -8,7 +11,7 @@ export default function Chat() {
     {/* Header */}
     <div className="bg-blue-500 text-white py-4 px-6 rounded-t-lg flex items-center justify-between">
       <h1 className="text-xl font-semibold">Chat</h1>
-      <button className="bg-blue-700 hover:bg-blue-800 px-3 py-1 rounded">Logout</button>
+      <button className="bg-blue-700 hover:bg-blue-800 px-3 py-1 rounded" onClick={()=>handleLogout()}>Logout</button>
     </div>
     {/* Chat Messages */}
     <div className="flex-1 overflow-y-auto p-6 space-y-4">
